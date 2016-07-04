@@ -4,7 +4,7 @@ Very small http service for serve static contents.
 
 ## Usage
 
-1. Build
+- Build
 
 ```Dockerfile
 FROM docker.io/acoshift/serve-http
@@ -15,7 +15,7 @@ COPY public /public
 docker build -t my-project .
 ```
 
-2. Run
+- Run
 
 ```sh
 docker run -p 8080:80 -d my-project
