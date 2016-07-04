@@ -15,11 +15,11 @@ const (
 )
 
 func main() {
-	n := negroni.New(negroni.NewRecovery(), negroni.NewLogger())
+	n := negroni.New(negroni.NewRecovery())
 	n.Use(&static{})
 	n.UseHandler(http.NotFoundHandler())
 
-	n.Run(":8080")
+	n.Run(":80")
 }
 
 type static struct {
