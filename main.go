@@ -10,7 +10,7 @@ import (
 )
 
 const (
-	dir       = http.Dir("public")
+	dir       = http.Dir("www")
 	indexFile = "index.html"
 )
 
