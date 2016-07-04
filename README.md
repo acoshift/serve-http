@@ -8,7 +8,7 @@ Very small http service for serve static contents.
 
 ```Dockerfile
 FROM docker.io/acoshift/serve-http
-COPY public /public
+COPY public /www
 ```
 
 ```sh
