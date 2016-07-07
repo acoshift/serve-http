@@ -21,10 +21,8 @@ docker build -t my-project .
 docker run -p 8080:80 -d my-project
 ```
 
-### Fallback
+or add config
 
-If you want to fallback `index.html` when file not found, you can use fallback image
-
-```Dockerfile
-FROM docker.io/acoshift/serve-http-fallback
+```sh
+docker run -p 8080:80 -d my-project --fallback --index=index.html --dir=www
 ```
