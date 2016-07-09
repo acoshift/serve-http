@@ -3,4 +3,4 @@ default:
 	docker build -t docker.io/acoshift/serve-http .
 
 push:
-	docker push docker.io/acoshift/serve-http .
+	docker push docker.io/acoshift/serve-http
