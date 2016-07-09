@@ -73,10 +73,6 @@ func run(cfg config) {
 	http.ListenAndServe(":"+strconv.Itoa(cfg.Port), m.Then(http.NotFoundHandler()))
 }
 
-type static struct {
-	cfg config
-}
-
 func tryFile(file string, dir http.Dir) (http.File, os.FileInfo, error) {
 	f, err := dir.Open(file)
 	if err != nil {
