@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"os"
 	"os/exec"
-	"path"
+	"path/filepath"
 	"runtime"
 	"strconv"
 	"strings"
@@ -96,8 +96,13 @@ func serveStatic(cfg config) func(http.Handler) http.Handler {
 			}
 			file := r.URL.Path
 
-			if cfg.Script && path.Ext(file) == ".sh" {
-				out, err := exec.Command(path.Join(string(cfg.Dir), file)).Output()
+			if cfg.Script && filepath.Ext(file) == ".sh" {
+				p, err := filepath.Abs(filepath.Join(string(cfg.Dir), file))
+				if err != nil {
+					http.Error(w, err.Error(), http.StatusInternalServerError)
+					return
+				}
+				out, err := exec.Command(p).Output()
 				if err != nil {
 					http.Error(w, err.Error(), http.StatusInternalServerError)
 					return
@@ -129,7 +134,7 @@ func serveStatic(cfg config) func(http.Handler) http.Handler {
 					return
 				}
 
-				file = path.Join(file, cfg.Index)
+				file = filepath.Join(file, cfg.Index)
 				f, err = cfg.Dir.Open(file)
 				if err != nil {
 					h.ServeHTTP(w, r)
